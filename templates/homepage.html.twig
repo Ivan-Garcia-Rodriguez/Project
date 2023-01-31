@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %} 
+
+
+
+
+{% block stylesheets %}
+    
+    <link rel="stylesheet" href={{asset('public/CSS/main.css') }} type="text/css" >
+    {{ parent()}}
+
+{% endblock %}
+
+
+{% block body %}
+    <p class="patata">Buenas tardes</p>
+{% endblock %}
+
+
+
+
