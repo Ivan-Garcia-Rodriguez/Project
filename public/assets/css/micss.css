@@ -1,0 +1,98 @@
+.sala{
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid;
+    width: 1000px;
+    height: 800px;
+    border-color: white;
+}
+
+.mesa{
+    position: relative;
+    width: 140px;
+    height: 140px;
+    background-size: cover;
+    background-image: url(../images/pato-girando.gif);
+    margin: 5px;
+}
+
+
+
+
+
+
+.contenedor{
+    position: relative;
+    width: 100%;
+    min-width: 1300px;
+    
+
+}
+
+¡
+.ancho{
+    
+    color: black;
+}
+
+p{
+    padding-top: 15px;
+    color: black;
+    
+}
+
+.alto{
+    
+    color: black;
+}
+
+.dialog{
+
+    
+    border-radius: 3px ;
+    border-style: solid;
+    background-color: #F99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.botones{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.crear{
+    margin-bottom: 10px;
+    margin-right: 20px;
+    
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
+.cerrar{
+    
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.almacen{
+    position: absolute;
+    left: 1000px;
+    top: 0;
+    border: 1px solid;
+    width: 300px;
+    height: 800px;
+    border-color: white;
+}
+
+.ui-dialog-titlebar-close { visibility: hidden; }
+
+

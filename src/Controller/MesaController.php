@@ -20,45 +20,40 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 #[route("/api/mesa",name:"api_mesa_")]
 class MesaController extends AbstractController
 {
-    #[Route('/nueva', name: 'nueva')]
+    #[Route('/nueva', name: 'nueva', methods: 'POST')]
     public function index(Request $request, MesaRepository $mr): Response
     {
 
-        $mesa = new Mesa();
+        $mesaNueva = new Mesa();
 
-        $form = $this->createForm(MesaType::class,$mesa);
+        $mesa = json_decode($request->request->get('mesa'));
 
-        $form = $this->createFormBuilder($mesa)
-            ->add('Ancho', NumberType::class)
-            ->add('Alto', NumberType::class)
-            ->add('x', NumberType::class)
-            ->add('y', NumberType::class)
-            ->add('imagen',FileType::class)
-            ->add('save', SubmitType::class, ['label' => 'Crear mesa'])
-            ->getForm();
         
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            
+        
 
-            $Name= "Patata.png";
+        $ancho =  (float) (json_decode($request->request->get('ancho')));
+        $alto = (float) json_decode($request->request->get('alto'));
+        $x = (float) json_decode($request->request->get('x'));
+        $y = (float) json_decode($request->request->get('y'));
+        $imagen = '';
 
-            $directorio = "public/images";
-            $file = $form['imagen']->getData();
-            $file->move($directorio, $Name);
+        $mesaNueva->setAncho($ancho);
+        $mesaNueva->setAlto($alto);
+        $mesaNueva->setX($x);
+        $mesaNueva->setY($y);
+        $mesaNueva->setImagen('$imagen');
 
-             $mesa = $form->getData();
-             $mesa->setImagen($Name);
-            
-             $mr->guardar($mesa);
-           
-        }
+        $mr->guardar($mesaNueva);
+       
 
-        return $this->render('mesaForm.html.twig', [
-            'form' => $form,
-        ]);
+        return $this->json(['status' => true, 'mesa' => $mesaNueva], 201);
+    }
+
+    #[Route('/mesas')]
+    public function mostrar()
+    {
+        return $this->render("mesa/mesa.html.twig",['controller_name' => 'MesaController']);
     }
 
     #[Route('/borrar/{id}',name:'borrar')]

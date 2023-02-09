@@ -39,6 +39,11 @@ class JuegoRepository extends ServiceEntityRepository
         }
     }
 
+    public function getOneJSON($juego)
+    {
+        return $this->json(["Nombre"=>$juego->getNombre(),"editorial"=>$juego->getEditorial(),"minimo"=>$juego->getMinimo(),"maximo"=>$juego->getMaximo(),"ancho"=>$juego->getAncho(),"alto"=>$juego->getAlto(),"imagen"=>$juego->getImagen()], 200);
+    }
+
 //    /**
 //     * @return Juego[] Returns an array of Juego objects
 //     */

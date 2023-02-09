@@ -6,7 +6,7 @@ use App\Repository\MesaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MesaRepository::class)]
-class Mesa
+class Mesa 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

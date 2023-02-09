@@ -24,18 +24,12 @@ class MesaRepository extends ServiceEntityRepository
     public function guardar(Mesa $mesa, bool $flush = false): void
     {
         
-        // if($mesa!=null){
-        //     if($this->existe($mesa->getId())==null){
-        //         $this->update($mesa,$mesa->getId());
-        //     }
-        // }
-         
-        //  else{
+        
                 $this->getEntityManager()->persist($mesa);
             
                 $this->getEntityManager()->flush();
             
-        //  }
+        
 
         
     }
@@ -83,6 +77,11 @@ class MesaRepository extends ServiceEntityRepository
 
         return $existe;
 
+    }
+
+    public function muestra($id){
+        $mesa = $this->find($id);
+        return $mesa;
     }
 
 //    /**
