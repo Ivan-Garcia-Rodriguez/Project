@@ -57,56 +57,53 @@ class MesaController extends AbstractController
     }
 
     #[Route('/borrar/{id}',name:'borrar')]
-    public function borrar(MesaRepository $mr, int $id): Response
+    public function borrar(MesaRepository $mr, int $id)
     {
         $mr->remove($id);
         
-        return new Response();
+        return $this->json(['status' => 200]);
     }
 
-    #[Route('/actualizar/{id}',name:'actualizar')]
-    public function actualizar(Request $request,MesaRepository $mr): Response
+    #[Route('/get/{id}', name:'getMesa' ,methods:'GET')]
+    public function conseguir(MesaRepository $mr, $id){
+        $mesa = $mr-> muestra($id);
+
+        return $this->json(['status'=>true, 'mesa' =>$mesa]);
+    }
+
+    #[Route('/actualizar',name:'actualizar', methods: 'POST')]
+    public function actualizar(Request $request,MesaRepository $mr)
     {
 
         
             $mesa= new Mesa();
 
-            $form = $this->createForm(MesaType::class,$mesa);
+            $ancho =  (float) (json_decode($request->request->get('ancho')));
+            $alto = (float) json_decode($request->request->get('alto'));
+            $x = (float) json_decode($request->request->get('x'));
+            $y = (float) json_decode($request->request->get('y'));
+            $imagen = '';
+    
+            $mesa->setAncho($ancho);
+            $mesa->setAlto($alto);
+            $mesa->setX($x);
+            $mesa->setY($y);
+            $mesa->setImagen('$imagen');
 
-            $form = $this->createFormBuilder($mesa)
-                ->add('Ancho', NumberType::class)
-                ->add('Alto', NumberType::class)
-                ->add('x', NumberType::class)
-                ->add('y', NumberType::class)
-                ->add('imagen',FileType::class)
-                ->add('save', SubmitType::class, ['label' => 'Crear mesa'])
-                ->getForm();
+           
             
-            $form->handleRequest($request);
+                $mr->update($mesa);
 
-            if ($form->isSubmitted() && $form->isValid()) 
-            {
-                
-                $Name= "Patata.png";
+                return $this->json(['status' => 200]);
 
-                $directorio = "public/images";
-                $file = $form['imagen']->getData();
-                $file->move($directorio, $someNewFilename);
-
-                $mesa = $form->getData();
-                $mesa->setImagen($Name);
-            
-                $mr->actualizar($mesa);
 
 
              }
 
    
 
-             return new Response();
-
+             
 
     }
 
 
-}

@@ -44,20 +44,20 @@ class MesaRepository extends ServiceEntityRepository
         
     }
 
-    public function update(Mesa $table,int $id){
-        $mesa= $this->find($id);
+    public function update(Mesa $table){
+       
 
-        if(!$mesa){
+        if(!$table){
             throw $this->createNotFoundException('No se ha encontrado la mesa con la id '.$id);
         }
 
-        $mesa->setX($table->getX());
-        $mesa->setY($table->getY());
-        $mesa->setAncho($table->getAncho());
-        $mesa->setAlto($table->getAlto());
-        $mesa->setImagen($table->getImagen());
+        $table->setX($table->getX());
+        $table->setY($table->getY());
+        $table->setAncho($table->getAncho());
+        $table->setAlto($table->getAlto());
+        $table->setImagen($table->getImagen());
 
-        $this->getEntityManager()->persist($mesa);
+        $this->getEntityManager()->persist($table);
             
                 $this->getEntityManager()->flush();
 

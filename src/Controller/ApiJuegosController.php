@@ -23,7 +23,7 @@ class ApiJuegosController extends AbstractController
         
     }
 
-    #[Route('/api/juegos', name: 'juegos', methods: ['GET'])]
+    #[Route('/api/juegos', name: 'allJuegos', methods: ['GET'])]
     public function getAllJuego(JuegoRepository $JR)
     {
         $juegos = $JR->findAll();

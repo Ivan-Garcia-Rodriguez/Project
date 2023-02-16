@@ -41,6 +41,7 @@ $(function(){
         }
 
       }).success(function (data){
+        console.log(data);
        
           mesaNueva.pinta();
 

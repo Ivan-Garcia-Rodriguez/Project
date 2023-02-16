@@ -12,7 +12,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
     name: 'saludaCommand',
-    description: 'Add a short description for your command',
+    description: 'Comando que saluda',
 )]
 class SaludaCommand extends Command
 {
