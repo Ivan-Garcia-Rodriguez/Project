@@ -12,52 +12,25 @@
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="{{url('main')}}" class="logo">
-                        <img src="assets/images/escudo2 (1) (1).png" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      
-                        <img src="assets/images/logo xokas y cía.png" id='searchText' name="searchKeyword" />
-                        
-                      
-                    </div>
-                    <!-- ***** Search End ***** -->
-                    
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="browse.html">Browse</a></li>
-                        <li><a href="details.html">Details</a></li>
-                        <li><a href="streams.html">Streams</a></li>
-                        <li><a href="{{url('perfil')}}">Profile <img src="assets/images/ludicolo2.jpg" alt=""></a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
+
+  
   <!-- ***** Header Area End ***** -->
 
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
-              <a class="logo">
-              <img src="assets/images/Donkey-baile.gif" height="200" width="200" alt="">
-             </a>
           <!-- ***** Banner Start ***** -->
+          
+         <div class="main-button" id="siguiente"><a>siguiente</a></div>
+         <div class="main-button" id="contenedorSilenciar">
+            <a id="silenciar">silenciar</a>
+         </div>
+         <div class="main-button" id="anterior"><a>anterior</a></div>
+         
+          
+          
+          
           <div class="main-banner">
             <div class="row">
               <div class="col-lg-7">
@@ -65,7 +38,7 @@
                   <h6>XOKAS Y CÍA</h6>
                   <h4><em class="letraBanner">Juega</em> y pasatelo <em clas>genial</em> con tus <em>amigos</em></h4>
                   <div class="main-button">
-                    <a href="browse.html">Registrate</a>
+                    <a href="{{url('app_login')}}">Registrate</a>
                   </div>
                 </div>
               </div>
@@ -80,94 +53,7 @@
                 <div class="heading-section">
                   <h4><em>Descubre</em> nuestros juegos</h4>
                 </div>
-                <div class="row">
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/anton-zampon.jpg" alt="" height="130px">
-                      <h4>AntónZam<br><span>Sandbox</span></h4>
-                      <ul>
-                        <li><i class="fa fa-user"></i>  1 - 4</li>
-                        {# <li><i class="fa fa-download"></i> 2.3M</li> #}
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/nodespiertes.jpg" alt="" height="130px">
-                      <h4>No despiertes<br><span>hasbro</span></h4>
-                      <ul>
-                        <li><i class="fa fa-user"></i> 1 - 4</li>
-                        {# <li><i class="fa fa-download"></i> 2.3M</li> #}
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/Cluedo.jpg" alt="" height="130px">
-                      <h4>Cluedo<br><span>Hasbro</span></h4>
-                      <ul>
-                        <li><i class="fa fa-user"></i> 1 - 4</li>
-                        {# <li><i class="fa fa-download"></i> 2.3M</li> #}
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/LaOca.jpg" alt="" height="130px">
-                      <h4>La Oca<br><span>Francisco I </span></h4>
-                      <ul>
-                        <li><i class="fa fa-user"></i> 1 - 4 </li>
-                        {# <li><i class="fa fa-download"></i> 2.3M</li> #}
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-6">
-                          <div class="item inner-item">
-                            <img src="assets/images/Parchis.png" alt="" height="130px">
-                            <h4>Parchis<br></h4>
-                            <ul>
-                              <li><i class="fa fa-user"></i> 1 - 4 </li>
-                              
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="col-lg-6 col-sm-6">
-                          <div class="item">
-                            <img src="assets/images/Monopoly.jpg" alt="" height="130px">
-                            <h4>Monopoly<br><span>CharlesDarr</span></h4>
-                            <ul>
-                              <li><i class="fa fa-user"></i> 2-8</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/quienesquien.jpg" alt="" height="130px">
-                      <h4>Quién es quién<br><span>Hasbro</span></h4>
-                      <ul>
-                        <li><i class="fa fa-user"></i> 2</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                      <img src="assets/images/NisiNino.jpg" alt="" height="130px">
-                      <h4>Ni sí ni no<br><span>megableu</span></h4>
-                      <ul>
-                        <li><i class="fa fa-user"></i> 1 - 4</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="main-button">
-                      <a href="{{url('juegos')}}">Todos los juegos</a>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -181,29 +67,7 @@
     </div>
   </div>
   
-  <footer>
-    <div class="container">
-      <div class="row">
-      <div class="col-lg-4">
-            <img src="assets/images/ludi-baile2.gif" height="150" width="200" class="logo">
-      </div>
-        <div class="col-lg-4">
-
-              
-
-          <p> IVÁN GARCÍA RODRÍGUEZ 
-          
-          <br> <a href="https://templatemo.com" target="_blank" title="free CSS templates">iNFORMACIÓN LEGAL</a></p>
-          
-        </div>
-        <div class="col-lg-4">
-              <img src="assets/images/ludi-baile.gif" height="150" width="200" class="logo">
-        </div>
-        
-      </div>
-    </div>
-  </footer>
-
+ 
 
   
 {% endblock %}

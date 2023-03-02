@@ -3,34 +3,38 @@
 {% block title %}Hello MesaController!{% endblock %}
 
 {% block body %}
-   
+<div class="container">
+<div class="page-content">
+    
+        <button class="boton">Crear mesa</button>
+        <button class="botonGuardar">Guardar disposición</button>
+            <div class="dialog" title="Nueva Mesa">
+            <p>Ancho </p>
+            <input type="text" class="ancho">
+            <p>Alto </p>
+            <input type="text" class="alto">
+                <br>
+                <br>
+                <div class="botones">
+                    <input type="submit" value="crear" class="crear">
 
-
-
-   
-    <button class="boton">CREAR MESA</button>
-        <div class="dialog" title="Nueva Mesa">
-           <p>Ancho </p>
-           <input type="text" class="ancho">
-           <p>Alto </p>
-           <input type="text" class="alto">
-            <br>
-            <br>
-            <div class="botones">
-                <input type="submit" value="crear" class="crear">
-
-                <input type="button" value="cerrar" class="cerrar">
+                    <input type="button" value="cerrar" class="cerrar">
+                </div>
+            
             </div>
-           
-        </div>
+   
+        <div class="contenedor">
+            <div class="sala"></div>
 
-    <div class="contenedor">
-        <div class="sala"></div>
+            <div class="almacen">
+                
+            </div>
 
-        <div class="almacen">
             
         </div>
+   
 
-        
-    </div>
+        </div>
+
+</div>
 {% endblock %}

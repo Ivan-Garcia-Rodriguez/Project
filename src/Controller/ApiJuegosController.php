@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Juego;
 use App\Repository\JuegoRepository;
 
-
+#[Route('/api/juego')]
 class ApiJuegosController extends AbstractController
 {
-    #[Route('/api/juego/{id}', name: 'app_api_juegos', methods: ['GET'])]
+    #[Route('/{id}', name: 'juegos')]
     public function getJuego(JuegoRepository $JR, $id): Response
     {
 
@@ -23,21 +23,37 @@ class ApiJuegosController extends AbstractController
         
     }
 
-    #[Route('/api/juegos', name: 'allJuegos', methods: ['GET'])]
+    #[Route('/todos', name: 'allJuegos')]
     public function getAllJuego(JuegoRepository $JR)
     {
         $juegos = $JR->findAll();
 
+       
+       
+        
         $juegosTotales = [];
 
         foreach ($juegos as $juego) {
-            $juego1 = $JR->getOneJSON($juego);
+            $juego1 = $JR->getArray($juego);
             array_push($juegosTotales,$juego1);
         }
 
-        return $juegosTotales;
+       
+        return $this->json(['status' => true, 'juegos' => $juegosTotales], 201);
+      
 
         
+    }
+
+    #[Route('/borrar/{id}', name: 'borraJuegos', methods: 'DELETE')]
+    public function borrarJuego(JuegoRepository $jr, $id)
+    {
+        $juego = new Juego();
+        $juego = $jr->find($id);
+        
+        $jr->remove($juego);
+
+        return $this->json(['status' => 200]);
     }
 
 

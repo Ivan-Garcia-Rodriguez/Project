@@ -33,9 +33,54 @@ class CrudJuegoController extends AbstractController
 
         $imagen = '';
 
+        $juego->setNombre($nombre);
+        $juego->setEditorial($editorial);
+        $juego->setMinimo($minimo);
+        $juego->setMaximo($maximo);
+        $juego->setAncho($ancho);
+        $juego->setAlto($alto);
+        $juego->setImagen($imagen);
         
 
+        return $this->json(['status' => true, 'juego' => $juego], 201);
 
 
     }
+
+    #[Route('/crud/juego/borrar/{id}', name: 'juegoBorrar', methods:'DELETE')]
+    public function borrar(JuegoRepository $jr, $id) : Response
+    {
+        $jr->remove($id);
+
+        return $this->json(['status' => true, 200]);
+    }
+
+    #[Route('/crud/juego/actualizar/{id}', name: 'juegoActualizar')]
+    public function actualizar(JuegoRepository $jr,$id) : Response
+    {
+        $Juego = $jr->find($id);
+
+        $nombre=  json_decode($request->request->get('Nombre'));
+        $editorial = json_decode($request->request->get('Editorial'));
+        $minimo = (float) (json_decode($request->request->get('minimo')));
+        $maximo = (float) (json_decode($request->request->get('maximo')));
+        $ancho = (float) (json_decode($request->request->get('ancho')));
+        $alto = (float) (json_decode($request->request->get('alto')));
+
+        $imagen = '';
+
+        $juego->setNombre($nombre);
+        $juego->setEditorial($editorial);
+        $juego->setMinimo($minimo);
+        $juego->setMaximo($maximo);
+        $juego->setAncho($ancho);
+        $juego->setAlto($alto);
+        $juego->setImagen($imagen);
+        
+
+        return $this->json(['status' => true, 'juego' => $juego], 201);
+
+    }
+
+    
 }

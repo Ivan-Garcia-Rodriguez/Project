@@ -1,9 +1,9 @@
 .sala{
-    position: absolute;
+
     left: 0;
     top: 0;
     border: 1px solid;
-    width: 1000px;
+    width: 800px;
     height: 800px;
     border-color: white;
 }
@@ -13,7 +13,7 @@
     width: 140px;
     height: 140px;
     background-size: cover;
-    background-image: url(../images/pato-girando.gif);
+    background-image: url(../images/mesa.png);
     margin: 5px;
 }
 
@@ -22,9 +22,11 @@
 
 
 
+
+
 .contenedor{
-    position: relative;
-    width: 100%;
+    display: flex;
+    flex-direction: row;
     min-width: 1300px;
     
 
@@ -38,8 +40,7 @@
 
 p{
     padding-top: 15px;
-    color: black;
-    
+    color: black;    
 }
 
 .alto{
@@ -57,6 +58,7 @@ p{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    
     
 }
 
@@ -83,16 +85,53 @@ p{
     margin-bottom: 20px;
 }
 
+.borrar{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+
+.ui-dialog-titlebar-close { visibility: hidden; }
+
+
 .almacen{
-    position: absolute;
-    left: 1000px;
+    
+    left: 200px;
     top: 0;
     border: 1px solid;
-    width: 300px;
+    width: 400px;
     height: 800px;
     border-color: white;
 }
 
-.ui-dialog-titlebar-close { visibility: hidden; }
+
+
+#centrao{
+    text-align: center;
+    margin: 30px;
+    color: white;    
+}
+
+#logIn{
+    text-align: center;
+}
+
+.imagenJuego{
+    margin: 50px;
+    width: 60%;
+    text-align: center;
+}
+
+.descripcionJuego{
+    margin: 10px;
+}
+
+
+.formuDiv{
+    margin: 40px;
+}
+
 
 

@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,16 +18,16 @@
 
 
                 <!-- Additional CSS Files -->
-                <link rel="stylesheet" href="/assets/css/fontawesome.css">
-                <link rel="stylesheet" href="/assets/css/templatemo-cyborg-gaming.css">
-                <link rel="stylesheet" href="/assets/css/owl.css">
-                <link rel="stylesheet" href="/assets/css/animate.css">
+                <link rel="stylesheet" href="{{asset('/assets/css/fontawesome.css')}}">
+                <link rel="stylesheet" href="{{asset('/assets/css/templatemo-cyborg-gaming.css')}}">
+                <link rel="stylesheet" href="{{asset('/assets/css/owl.css')}}">
+                <link rel="stylesheet" href="{{asset('/assets/css/animate.css')}}">
                 <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
                 
                 {# <link rel="stylesheet" href="/assets/css/jquery-ui.css">
                 
                 <link rel="stylesheet" href="/assets/css/jquery-ui.theme.css"> #}
-                <link rel="stylesheet" href="/assets/css/micss.css">
+                <link rel="stylesheet" href="{{asset('/assets/css/micss.css')}}">
 
                  
                 
@@ -35,7 +38,69 @@
 
     </head>
     <body>
+    <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{{url('main')}}" class="logo">
+                        <img src="{{asset('assets/images/logo xokas y cía.png')}}" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Search End ***** -->
+                    <div class="search-input">
+                      
+                      
+                        
+                      
+                    </div>
+                    <!-- ***** Search End ***** -->
+                    
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{{url('main')}}" class="active">Home</a></li>
+                        <li><a href="{{url('admin')}}">EasyAdmin</a></li>
+                        <li><a href="{{url('juegos')}}">Juegos</a></li>
+                        <li><a href="{{url('reserva')}}">Reservas</a></li>
+                        <li><a href="{{url('mesas')}}">Mesa</a></li>
+                        <li><a href="{{url('perfil')}}">Profile <img src="{{asset('assets/images/ludicolo2.jpg')}}" alt=""></a></li>
+                        
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+        <audio autoplay  id="cancionFondo"><source src="audio/wiishop.mp3" type="audio/mp3"/></audio>
         {% block body %}{% endblock %}
+         <footer>
+    <div class="container">
+      <div class="row">
+      <div class="col-lg-4">
+            <img src="{{asset('/assets/images/ludi-baile2.gif')}}" height="150" width="200" class="imagenFooter">
+      </div>
+        <div class="col-lg-4">
+
+              
+
+          <p> IVÁN GARCÍA RODRÍGUEZ 
+          
+          <br> <a href="https://templatemo.com" target="_blank" title="free CSS templates">iNFORMACIÓN LEGAL</a></p>
+          
+        </div>
+        <div class="col-lg-4">
+              <img src="{{asset('/assets/images/ludi-baile.gif')}}" height="150" width="200" class="imagenFooter">
+        </div>
+        
+      </div>
+    </div>
+  </footer>
+
         {% block javascripts %}
                         <!-- Scripts -->
             <!-- Bootstrap core JavaScript -->
@@ -51,7 +116,8 @@
             <script src="/assets/js/custom.js"></script>
             <script src="/assets/js/mio.js"></script>
             <script src="/assets/js/mesaObjeto.js"></script>
-            <script src="/assets/js/juegos.js"><script>
+            <script src="/assets/js/juegos.js"></script>
+           
 
            
         {% endblock %}

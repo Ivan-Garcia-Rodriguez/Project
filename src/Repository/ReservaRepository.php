@@ -21,13 +21,13 @@ class ReservaRepository extends ServiceEntityRepository
         parent::__construct($registry, Reserva::class);
     }
 
-    public function save(Reserva $entity, bool $flush = false): void
+    public function save(Reserva $entity): void
     {
         $this->getEntityManager()->persist($entity);
 
-        if ($flush) {
+        
             $this->getEntityManager()->flush();
-        }
+        
     }
 
     public function remove(Reserva $entity, bool $flush = false): void

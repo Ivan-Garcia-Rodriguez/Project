@@ -15,12 +15,10 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
-
-
-#[route("/api/mesa",name:"api_mesa_")]
+#[route("/api/mesa")]
 class MesaController extends AbstractController
 {
-    #[Route('/nueva', name: 'nueva', methods: 'POST')]
+    #[Route('', name: 'nueva', methods: 'POST')]
     public function index(Request $request, MesaRepository $mr): Response
     {
 
@@ -47,16 +45,16 @@ class MesaController extends AbstractController
         $mr->guardar($mesaNueva);
        
 
-        return $this->json(['status' => true, 'mesa' => $mesaNueva], 201);
+        return $this->json(['status' => true, 'id' => $mesaNueva->getId()], 201);
     }
 
-    #[Route('/mesas')]
+    #[Route('/mesas', name:'mesas')]
     public function mostrar()
     {
-        return $this->render("mesa/mesa.html.twig",['controller_name' => 'MesaController']);
+        return $this->render("mesa/mesa.html.twig",[]);
     }
 
-    #[Route('/borrar/{id}',name:'borrar')]
+    #[Route('/{id}',name:'borrar' ,methods:'DELETE')]
     public function borrar(MesaRepository $mr, int $id)
     {
         $mr->remove($id);
@@ -71,12 +69,12 @@ class MesaController extends AbstractController
         return $this->json(['status'=>true, 'mesa' =>$mesa]);
     }
 
-    #[Route('/actualizar',name:'actualizar', methods: 'POST')]
-    public function actualizar(Request $request,MesaRepository $mr)
+    #[Route('/{id}',name:'actualizar', methods: 'PUT')]
+    public function actualizar(Request $request,MesaRepository $mr,$id)
     {
 
         
-            $mesa= new Mesa();
+            $mesa= $mr->find($id);
 
             $ancho =  (float) (json_decode($request->request->get('ancho')));
             $alto = (float) json_decode($request->request->get('alto'));

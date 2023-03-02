@@ -37,6 +37,9 @@ class Usuario
     #[ORM\Column]
     private ?int $numTelegram = null;
 
+    #[ORM\ManyToOne(inversedBy: 'usuario')]
+    private ?Reserva $reserva = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -134,6 +137,18 @@ class Usuario
     public function setNumTelegram(int $numTelegram): self
     {
         $this->numTelegram = $numTelegram;
+
+        return $this;
+    }
+
+    public function getReserva(): ?Reserva
+    {
+        return $this->reserva;
+    }
+
+    public function setReserva(?Reserva $reserva): self
+    {
+        $this->reserva = $reserva;
 
         return $this;
     }

@@ -25,23 +25,24 @@ class JuegoRepository extends ServiceEntityRepository
     {
         $this->getEntityManager()->persist($entity);
 
-        if ($flush) {
+        
             $this->getEntityManager()->flush();
-        }
+        
     }
 
     public function remove(Juego $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
-        if ($flush) {
+        
             $this->getEntityManager()->flush();
-        }
+        
     }
 
-    public function getOneJSON($juego)
+    public function getArray($juego)
     {
-        return $this->json(["Nombre"=>$juego->getNombre(),"editorial"=>$juego->getEditorial(),"minimo"=>$juego->getMinimo(),"maximo"=>$juego->getMaximo(),"ancho"=>$juego->getAncho(),"alto"=>$juego->getAlto(),"imagen"=>$juego->getImagen()], 200);
+        
+        return ["id"=>$juego->getId(),"Nombre"=>$juego->getNombre(),"editorial"=>$juego->getEditorial(),"minimo"=>$juego->getMinimo(),"maximo"=>$juego->getMaximo(),"ancho"=>$juego->getAncho(),"alto"=>$juego->getAlto(),"imagen"=>$juego->getImagen()];
     }
 
 //    /**

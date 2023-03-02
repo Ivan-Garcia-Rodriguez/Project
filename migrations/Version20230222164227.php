@@ -1,0 +1,45 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DoctrineMigrations;
+
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
+
+/**
+ * Auto-generated Migration: Please modify to your needs!
+ */
+final class Version20230222164227 extends AbstractMigration
+{
+    public function getDescription(): string
+    {
+        return '';
+    }
+
+    public function up(Schema $schema): void
+    {
+        // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE reserva ADD mesa_id INT DEFAULT NULL, ADD juego_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE reserva ADD CONSTRAINT FK_188D2E3B8BDC7AE9 FOREIGN KEY (mesa_id) REFERENCES mesa (id)');
+        $this->addSql('ALTER TABLE reserva ADD CONSTRAINT FK_188D2E3B13375255 FOREIGN KEY (juego_id) REFERENCES juego (id)');
+        $this->addSql('CREATE INDEX IDX_188D2E3B8BDC7AE9 ON reserva (mesa_id)');
+        $this->addSql('CREATE INDEX IDX_188D2E3B13375255 ON reserva (juego_id)');
+        $this->addSql('ALTER TABLE usuario ADD reserva_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE usuario ADD CONSTRAINT FK_2265B05DD67139E8 FOREIGN KEY (reserva_id) REFERENCES reserva (id)');
+        $this->addSql('CREATE INDEX IDX_2265B05DD67139E8 ON usuario (reserva_id)');
+    }
+
+    public function down(Schema $schema): void
+    {
+        // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE reserva DROP FOREIGN KEY FK_188D2E3B8BDC7AE9');
+        $this->addSql('ALTER TABLE reserva DROP FOREIGN KEY FK_188D2E3B13375255');
+        $this->addSql('DROP INDEX IDX_188D2E3B8BDC7AE9 ON reserva');
+        $this->addSql('DROP INDEX IDX_188D2E3B13375255 ON reserva');
+        $this->addSql('ALTER TABLE reserva DROP mesa_id, DROP juego_id');
+        $this->addSql('ALTER TABLE usuario DROP FOREIGN KEY FK_2265B05DD67139E8');
+        $this->addSql('DROP INDEX IDX_2265B05DD67139E8 ON usuario');
+        $this->addSql('ALTER TABLE usuario DROP reserva_id');
+    }
+}

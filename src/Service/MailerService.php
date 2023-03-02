@@ -25,7 +25,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
             
             $email = (new TemplatedEmail())
                 ->from('ridivan28@gmail.com')
-                ->to('alecillo5@gmail.com')
+                ->to('ridivan28@gmail.com')
                 ->subject('Prueba del mailer')
                 ->attach($output,$type);
                 

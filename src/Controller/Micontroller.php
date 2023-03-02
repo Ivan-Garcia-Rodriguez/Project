@@ -31,11 +31,10 @@ class Micontroller extends AbstractController
         
         if ($idioma=="Español")
         {
-            // $id=$request->query->get('id');
-            // return new Response($id);
+            
             $html=$this->render('homepage.html.twig',['request'=>$request]);
             return $html;
-            // return new Response("Hola ".$user);
+            
         }
         else if ($idioma=="Ingles")
         {

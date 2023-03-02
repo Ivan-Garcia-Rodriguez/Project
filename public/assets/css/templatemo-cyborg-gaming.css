@@ -171,6 +171,7 @@ p {
   overflow: hidden;
 }
 
+
 .main-button a:hover {
   background-color: #fff;
   color: #e75e8d;
@@ -417,7 +418,7 @@ Header Style
 }
 
 .header-area .main-nav .logo img {
-  width: 131px;
+  width: 71px;
 }
 
 .background-header .main-nav .logo {
@@ -425,7 +426,7 @@ Header Style
 }
 
 .background-header .main-nav .logo img {
-  width: 180px;
+  width: 71px;
 }
 
 .header-area .main-nav .nav {
@@ -878,7 +879,8 @@ Most Popular Style
 
 .most-popular .main-button {
   text-align: center;
-  margin-bottom: -53px;
+  margin-bottom: 3px;
+  margin-top: 13px;
 }
 
 /* 
@@ -1655,6 +1657,10 @@ body {
 }
 
 @media (max-width: 767px) {
+
+  .imagenFooter{
+    display: none;
+  }
   body .page-content {
     padding: 0px 30px;
   }
@@ -1704,6 +1710,12 @@ body {
 }
 
 @media (max-width: 992px) {
+
+  .imagenFooter{
+    display: none;
+  }
+
+
   .background-header {
   display: inline-block;
   }
@@ -1741,6 +1753,7 @@ body {
   .header-area .main-nav .logo {
     margin-right: 30px;
     border-right: none;
+
   }
   .gaming-library .item ul li {
     width: 16%;
