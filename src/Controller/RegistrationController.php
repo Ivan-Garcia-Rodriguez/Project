@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\EjemploUsuario;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +19,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
 
-        $user = new User();
+        $user = new EjemploUsuario();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -32,13 +32,14 @@ class RegistrationController extends AbstractController
                 )
             );
 
+           
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
 
-            var_dump($user);
-                // return $this->redirectToRoute('main');
+            
+                return $this->redirectToRoute('main');
             
             
         }

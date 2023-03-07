@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PerfilController!{% endblock %}
+{% block title %}Perfil{% endblock %}
 
 {% block body %}
  <!-- ***** Preloader Start ***** -->
@@ -38,7 +38,7 @@
                       <h4>Saul Goodman</h4>
                      
                       <div class="main-border-button">
-                        <a href="#">Cerrar sesión</a>
+                        <a href="{{path('app_logout')}}">Cerrar sesión</a>
                       </div>
                     </div>
                   </div>
@@ -59,10 +59,8 @@
           <!-- ***** Gaming Library Start ***** -->
           <div class="gaming-library profile-library">
             <div class="col-lg-12">
-              <div class="heading-section">
-                <h4><em>Historial de</em> reservas</h4>
-              </div>
-             
+
+              <div class="item">
                 <ul>
                   <li><img src="assets/images/Perfeccion.png" alt="" class="templatemo-item"></li>
                   <li><h4>Juego</h4><span>Antón Zampón</span></li>
@@ -70,8 +68,9 @@
                   <li><h4>Asistió</h4><span>Sí</span></li>
 
                 </ul>
+              </div>
             
-              
+              <div class="item">
                 <ul>
                   <li><img src="assets/images/Perfeccion.png" alt="" class="templatemo-item"></li>
                   <li><h4>Juego</h4><span>No despiertes a papá</span></li>
@@ -80,6 +79,7 @@
                 
 
                 </ul>
+              </div>
               
               {# <div class="item last-item">
                 <ul>

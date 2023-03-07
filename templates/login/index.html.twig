@@ -8,66 +8,21 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <img src="assets/images/pato-girando.gif">
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <!-- ***** Header Area Start ***** -->
-
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="{{url('main')}}" class="logo">
-                        <img src="assets/images/escudo2 (1) (1).png" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      
-                        <img src="assets/images/logo xokas y cía.png" id='searchText' name="searchKeyword" />
-                        
-                      
-                    </div>
-                    <!-- ***** Search End ***** -->
-                    
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="{{url('main')}}" class="active">Home</a></li>
-                        <li><a href="{{url('admin')}}">EasyAdmin</a></li>
-                        <li><a href="{{url('juegos')}}">Juegos</a></li>
-                        <li><a href="streams.html">Reservas</a></li>
-                        <li><a href="{{url('perfil')}}">Profile <img src="assets/images/ludicolo2.jpg" alt=""></a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
+   
 
 <div class="page-content">
     <h1 id="logIn"><a class="letraBanner">LOG</a><a>IN</a></h1>
-    <form action="{{ path('main') }}" method="post" id="centrao">
-        <a>Email:</a>
+    <form action="{{ path('app_login') }}" method="post" id="centrao">
+        <a class="formuDiv">Email:</a>
         <input type="text" id="username" name="_username" value="{{ last_username }}">
 
-        <a>Password:</a>
-        <input type="password" id="password" name="_password">
+        <a class="formuDiv">Password:</a>
+        <input type="password" id="password" name="_password" >
 
         {# If you want to control the URL the user is redirected to on success #}
-        <input type="hidden" name="_target_path" value="/account"> 
-
-        <button type="submit">login</button>
+        <input type="hidden" name="_target_path" value="/main"> 
+    <br>
+        <button type="submit" class="formuDiv">login</button>
     </form>
 </div>
 {% endblock %}

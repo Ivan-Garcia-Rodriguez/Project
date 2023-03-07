@@ -4,6 +4,7 @@ $(function(){
   $(".boton").click(
     function(){
       
+      //Las animaciones del dialog
       $(".dialog").dialog({
         
       
@@ -19,16 +20,18 @@ $(function(){
         }
       })
 
+      //Para cerrar el dialog
       $(".cerrar").click(function(){
         $(".dialog").dialog("close");
       })
       
+      //Para crear la mesa
     $(".crear").click(function(){
       var ancho = $(".ancho").val();
       var alto = $(".alto").val();
       
 
-      
+      //MANDAMOS LOS DATOS Y CREAMOS LA MESA EN LA BASE DE DATOS
       $.ajax({
         type: "POST",
         url:"http://localhost:8000/api/mesa",
@@ -43,7 +46,7 @@ $(function(){
       }).success(function (data){
           console.log(data['id']);
           
-          
+          //CREAMOS LA MESA, LA PINTAMOS Y CERRAMOS EL DIALOG 
           var mesaNueva = new MesaObjeto(data['id'],null,null,ancho,alto,null);
           mesaNueva.pinta();
           
@@ -60,18 +63,7 @@ $(function(){
  
 )
 
-    // $(".mesa").draggable({
-    //   revert: true,
-    //   helper: 'clone',
-    //   revertDuration:0,
-    //   start:function(ev,ui){
-    //     $(this).attr("data-y",ui.offset.top)
-    //     $(this).attr("data-x",ui.offset.left)
-       
-      
-        
-
-    //   }});
+   
 
   
       
@@ -92,14 +84,14 @@ $(function(){
         var height= parseInt(mesa.height())
         var pos1= [x,x+width,y,y+height]
         
-
+        //CREAMOS EL OBJETO MESAOBJETO CON TODOS LOS DATOS DE LA MESA
         var mesaObjeto = new MesaObjeto(klk,x,y,width,height,pos1);
-        console.log(mesaObjeto);
-        debugger;
+        
    
          
         let valido=true;
         var mesaYa=$(".sala .mesa");
+        //POR CADA MESA QUE ESTÉ EN LA SALA COMPROBAMOS QUE NO CHOQUEN
         $.each(mesaYa,function(key,value){
 
           if(value !=mesaObjeto && !$(value).hasClass('ui-draggable-dragging')){
@@ -111,19 +103,19 @@ $(function(){
             
            
             var pos2=[posX,posX+anchura,posY,posY+altura];
-            
+            //LA MESA QUE QUEREMOS COMPROBAR QUE NO CHOQUEN
             var mesaNueva= new MesaObjeto(id,posX,posY,anchura,altura,pos2);
-            // if(mesaObjeto.choque(mesaNueva)==true){
-            //   valido=false;
-            //   posX=parseInt(value.offsetLeft);
-            //   posY=parseInt(value.offsetTop);
-            //   var anchura=(value.offsetWidth);
-            //   var altura=(value.offsetTop);
+            if(mesaObjeto.choque(mesaNueva)==true){
+              valido=false;
+              posX=parseInt(value.offsetLeft);
+              posY=parseInt(value.offsetTop);
+              var anchura=(value.offsetWidth);
+              var altura=(value.offsetTop);
              
-            //   var pos2=[posX,posX+anchura,posY,posY+altura];
+              var pos2=[posX,posX+anchura,posY,posY+altura];
               
-            //   var mesaNueva= new MesaObjeto(posX,posY,anchura,altura,pos2);               
-            // }
+              var mesaNueva= new MesaObjeto(posX,posY,anchura,altura,pos2);               
+            }
           }
           
          
@@ -133,9 +125,11 @@ $(function(){
           
         })
         
+        //SI NO CHOCA
         if(valido){
           
-          
+          //Cada vez que movemos la mesa, se actualiza su valor en la base de datos y la dropeamos en
+          // la sala
           $.ajax({
             type: "PUT",
             url:"http://localhost:8000/api/mesa/"+mesaObjeto.id,
@@ -168,6 +162,7 @@ $(function(){
     });
 
 
+    //Por cada mesa que esté en la sala las guardamos en una array de Mesas
     $(".botonGuardar").click(function(){
       
       
@@ -184,8 +179,8 @@ $(function(){
            mesasTotales.push(mesaNueva);   
       })
 
-      console.log(mesasTotales);
-      debugger;
+
+      //Guardamos la disposición en la BD
       $.ajax({
         type: "POST",
         url:"http://localhost:8000/api/disposicion",
@@ -202,7 +197,8 @@ $(function(){
 
     })
    
-
+    //Le ponemos a la mesa una posición, un left de 0 y un top de 0, le añadimos el id de la BD y
+    // la enlacamos
     $(".almacen").droppable({
       drop:function(ev,ui){
         var mesa= ui.helper;
@@ -241,112 +237,7 @@ $(function(){
 
 
 
-    
-    var cancionFondo = document.getElementById("cancionFondo");
 
-
-    let playList = 
-    [
-      'wiiShop.mp3',
-      'kecleonShop.mp3',
-      'miiChannel.mp3',
-      'wiiSports.mp3',
-      'wiiResults.mp3',
-      'CentroCocotero.mp3'
-    ]
-
-    let tope =5;
-    let trackIndex;
-
-    trackIndex = 0;
-
-    var siguiente = document.getElementById("siguiente");
-    var anterior = document.getElementById("anterior");
-
-    function cambiaCancion(numCancion){
-      cancionFondo.src= 'audio/' + playList[numCancion];
-      cancionFondo.currentTime = 0;
-      cancionFondo.play();
-    }
-
-
-    
-    if(cancionFondo==null || cancionFondo==undefined){
-
-    }else{
-
-
-
-      
-      audioPlay = setInterval(function(){
-        let tiempoCancion = Math.round(cancionFondo.currentTime);
-        let cancionLength = Math.round(cancionFondo.duration);
-  
-        if(tiempoCancion == cancionLength && trackIndex <tope ){
-          trackIndex++;
-          cambiaCancion(trackIndex);
-        } else if (tiempoCancion == cancionLength && trackIndex >=tope){
-          trackIndex = 0;
-          cambiaCancion(trackIndex);
-        }
-      },10)
-    }
-
-
-if(anterior == null || anterior  == undefined){
-
-}else{
-  anterior.addEventListener("click",function(){
-    if(trackIndex >0){
-      trackIndex--;
-      cambiaCancion(trackIndex);
-    }else{
-      trackIndex=tope;
-      cambiaCancion(trackIndex);
-    }
-  })
-}
-    
-if(siguiente == null || siguiente ==undefined ){
-
-}else{
-  
-  siguiente.addEventListener("click",function(){
-    if(trackIndex < tope){
-      trackIndex++;
-      cambiaCancion(trackIndex);
-    }
-    else{
-      trackIndex=0;
-      cambiaCancion(trackIndex);
-    }
-  })
-}
-
-
-    $(window).on('beforeunload',function(){
-      localStorage.setItem('cancion',cancionFondo.currentTime);
-      
-    })
-    cancionFondo.currentTime= localStorage.getItem('cancion');
-    
-    var silenciar = document.getElementById("silenciar");
-    var contenedorSilenciar = document.getElementById("contenedorSilenciar");
-
-    
-    $(contenedorSilenciar).click(function(ev){
-        
-      if(cancionFondo.muted===false){
-        cancionFondo.muted=true;
-        silenciar.innerHTML="desilenciar";  
-
-    }
-    else{
-        silenciar.innerHTML='silenciar';
-        cancionFondo.muted=false;
-    }
-
-    })
 
     
       

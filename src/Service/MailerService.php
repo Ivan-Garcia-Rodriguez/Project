@@ -9,12 +9,15 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
   class MailerService
   {
 
-
+      private MailerInterface $mailer;
+      function __construct(MailerInterface $mailer){
+          $this->mailer=$mailer;
+      }
 
 
         
 
-        public function sendEmail($html,MailerInterface $mailer){
+        public function sendEmail($html){
 
             $dompdf = new Dompdf();
             $dompdf->loadHtml($html);
@@ -25,13 +28,13 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
             
             $email = (new TemplatedEmail())
                 ->from('ridivan28@gmail.com')
-                ->to('ridivan28@gmail.com')
+                ->to('artiiyoshi64@gmail.com')
                 ->subject('Prueba del mailer')
                 ->attach($output,$type);
                 
     
     
-                $mailer->send($email);
+               $this->mailer->send($email);
                 
         }
 

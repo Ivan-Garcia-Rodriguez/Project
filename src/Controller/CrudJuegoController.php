@@ -8,79 +8,75 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Juego;
 use App\Repository\JuegoRepository;
+use App\Form\JuegoType;
 
+
+#[IsGranted('ROLE_ADMIN')]
+#[Route('/crud/juego')]
 class CrudJuegoController extends AbstractController
 {
-    #[Route('/crud/juego', name: 'app_crud_juego')]
-    public function index(): Response
+    #[Route('', name: 'crud_juego')]
+    public function index(JuegoRepository $jr): Response
     {
         return $this->render('crud_juego/index.html.twig', [
-            'controller_name' => 'CrudJuegoController',
+            'juegos' => $jr->findAll(),
         ]);
     }
 
-    #[Route('/crud/juego/nuevo', name: 'juego_nuevo',methods:'POST')]
-    public function new(Request $request, JuegoRepository $jr) : Response
+    #[Route('/{id}', name: 'crud_juego_borrar')]
+    public function borrar(JuegoRepository $jr, $id)
     {
         $juego = new Juego();
-
-        $nombre=  json_decode($request->request->get('Nombre'));
-        $editorial = json_decode($request->request->get('Editorial'));
-        $minimo = (float) (json_decode($request->request->get('minimo')));
-        $maximo = (float) (json_decode($request->request->get('maximo')));
-        $ancho = (float) (json_decode($request->request->get('ancho')));
-        $alto = (float) (json_decode($request->request->get('alto')));
-
-        $imagen = '';
-
-        $juego->setNombre($nombre);
-        $juego->setEditorial($editorial);
-        $juego->setMinimo($minimo);
-        $juego->setMaximo($maximo);
-        $juego->setAncho($ancho);
-        $juego->setAlto($alto);
-        $juego->setImagen($imagen);
+        $juego = $jr->find($id);
         
+        $jr->remove($juego);
 
-        return $this->json(['status' => true, 'juego' => $juego], 201);
-
-
+        return $this->redirectToRoute('crud_juego');
     }
 
-    #[Route('/crud/juego/borrar/{id}', name: 'juegoBorrar', methods:'DELETE')]
-    public function borrar(JuegoRepository $jr, $id) : Response
+    #[Route('/editar/{id}', name: 'crud_juego_editar')]
+    public function editar(JuegoRepository $jr,Request $request,$id)
     {
-        $jr->remove($id);
+        $juego = new Juego();
+        $juego = $jr->find($id);
+        $form = $this->createForm(JuegoType::class,$juego);
+        $form->handleRequest($request);
 
-        return $this->json(['status' => true, 200]);
+        if ($form->isSubmitted() && $form->isValid()){
+           
+            $juego->setNombre($form->get('Nombre')->getData());
+            $juego->setEditorial($form->get('editorial')->getData());
+            $juego->setMinimo($form->get('minimo')->getData());
+            $juego->setMaximo($form->get('maximo')->getData());
+            $juego->setAncho($form->get('ancho')->getData());
+            $juego->setAlto($form->get('alto')->getData());
+            $NombreFichero = $form->get('imagen')->getData()->getClientOriginalName();
+            $juego->setImagen($NombreFichero);
+
+            $file = $form->get('imagen')->getData();
+            $file->move('./assets/images',$NombreFichero);
+            
+           
+           
+            $jr->save($juego);
+
+            
+                return $this->redirectToRoute('crud_juego');
+            
+         
     }
 
-    #[Route('/crud/juego/actualizar/{id}', name: 'juegoActualizar')]
-    public function actualizar(JuegoRepository $jr,$id) : Response
-    {
-        $Juego = $jr->find($id);
-
-        $nombre=  json_decode($request->request->get('Nombre'));
-        $editorial = json_decode($request->request->get('Editorial'));
-        $minimo = (float) (json_decode($request->request->get('minimo')));
-        $maximo = (float) (json_decode($request->request->get('maximo')));
-        $ancho = (float) (json_decode($request->request->get('ancho')));
-        $alto = (float) (json_decode($request->request->get('alto')));
-
-        $imagen = '';
-
-        $juego->setNombre($nombre);
-        $juego->setEditorial($editorial);
-        $juego->setMinimo($minimo);
-        $juego->setMaximo($maximo);
-        $juego->setAncho($ancho);
-        $juego->setAlto($alto);
-        $juego->setImagen($imagen);
-        
-
-        return $this->json(['status' => true, 'juego' => $juego], 201);
+        return $this->render('crud_juego/formulario.html.twig', [
+            'form' => $form,
+        ]);
 
     }
+
+    
+
+    
+
+    
 
     
 }

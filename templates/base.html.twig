@@ -28,8 +28,9 @@
                 
                 <link rel="stylesheet" href="/assets/css/jquery-ui.theme.css"> #}
                 <link rel="stylesheet" href="{{asset('/assets/css/micss.css')}}">
-
-                 
+                <link rel="stylesheet" href="{{asset('/assets/css/formulario.css')}}">
+                <link rel="stylesheet" href="{{asset('/assets/css/juego.css')}}">
+                <link rel="stylesheet" href="{{asset('/assets/css/mesas.css')}}">
                 
                 
 
@@ -49,23 +50,24 @@
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Search End ***** -->
-                    <div class="search-input">
-                      
-                      
-                        
-                      
-                    </div>
+
                     <!-- ***** Search End ***** -->
                     
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
+                    {% if app.user %}
+                        {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{url('main')}}" class="active">Home</a></li>
                         <li><a href="{{url('admin')}}">EasyAdmin</a></li>
                         <li><a href="{{url('juegos')}}">Juegos</a></li>
-                        <li><a href="{{url('reserva')}}">Reservas</a></li>
                         <li><a href="{{url('mesas')}}">Mesa</a></li>
-                        <li><a href="{{url('perfil')}}">Profile <img src="{{asset('assets/images/ludicolo2.jpg')}}" alt=""></a></li>
-                        
+                        {% endif %}
+                         <li><a href="{{url('reserva')}}">Reservas</a></li>
+                         <li><a href="{{url('perfil')}}">Profile <img src="{{asset('assets/images/ludicolo2.jpg')}}" alt=""></a></li>
+                    {% endif %} 
+                        {% if app.user == null %}
+                        <li><a href="{{url('app_login')}}">login </a></li>
+                        {% endif %}
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -116,6 +118,7 @@
             <script src="/assets/js/custom.js"></script>
             <script src="/assets/js/mio.js"></script>
             <script src="/assets/js/mesaObjeto.js"></script>
+            <script src="/assets/js/cancionFondo.js"></script>
             <script src="/assets/js/juegos.js"></script>
            
 

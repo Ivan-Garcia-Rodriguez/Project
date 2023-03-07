@@ -10,9 +10,12 @@ use App\Repository\ReservaRepository;
 use App\Entity\Reserva;
 use App\Entity\Usuario;
 use App\Form\ReservaType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 class ReservaController extends AbstractController
 {
+    #[IsGranted('ROLE_USER')]
     #[Route('/reserva', name: 'reserva')]
     public function index(ReservaRepository $rr, Request $request): Response
     {

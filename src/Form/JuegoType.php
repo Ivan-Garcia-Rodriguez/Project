@@ -22,7 +22,7 @@ class JuegoType extends AbstractType
             ->add('maximo',IntegerType::class, ['attr' =>['class' => 'formuDiv']])
             ->add('ancho',IntegerType::class, ['attr' =>['class' => 'formuDiv']])
             ->add('alto',IntegerType::class, ['attr' =>['class' => 'formuDiv']])
-            ->add('imagen',FileType::class, ['attr' =>['class' => 'formuDiv']])
+            ->add('imagen',FileType::class, ['data_class'=>null,'attr' =>['class' => 'formuDiv']])
             ->add('guardar',SubmitType::class, ['attr' =>['class' => 'formuDiv']])
         ;
     }

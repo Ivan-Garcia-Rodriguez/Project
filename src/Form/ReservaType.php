@@ -18,9 +18,9 @@ class ReservaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('FechaHora',DateTimeType::class,['widget' => 'single_text', 'empty_data'=>''])
-            ->add('mesa',EntityType::class,['class' => Mesa::class, 'choice_label' => 'id'])
-            ->add('juego',EntityType::class,['class' => Juego::class, 'choice_label' => 'Nombre'])
+            ->add('FechaHora',DateTimeType::class,['widget' => 'single_text', 'empty_data'=>'', 'attr'=>['class' => 'formuDiv']])
+            ->add('mesa',EntityType::class,['class' => Mesa::class, 'choice_label' => 'id', 'attr'=>['class' => 'formuDiv']])
+            ->add('juego',EntityType::class,['class' => Juego::class, 'choice_label' => 'Nombre','attr'=>['class' => 'formuDiv']])
             ->add('Reservar',SubmitType::class)
         ;
     }

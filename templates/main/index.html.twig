@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Xokas y cía{% endblock %}
 
 {% block body %}
  <!-- ***** Preloader Start ***** -->
@@ -36,10 +36,13 @@
               <div class="col-lg-7">
                 <div class="header-text">
                   <h6>XOKAS Y CÍA</h6>
+                  
                   <h4><em class="letraBanner">Juega</em> y pasatelo <em clas>genial</em> con tus <em>amigos</em></h4>
+                  {% if app.user == null %}
                   <div class="main-button">
-                    <a href="{{url('app_login')}}">Registrate</a>
+                    <a href="{{url('app_register')}}">Registrate</a>
                   </div>
+                  {% endif %}
                 </div>
               </div>
             </div>

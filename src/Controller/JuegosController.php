@@ -14,6 +14,7 @@ use App\Repository\JuegoRepository;
 #[Route('/juegos')]
 class JuegosController extends AbstractController
 {
+   
     #[Route('', name: 'juegos')]
     public function index(): Response
     {
@@ -22,7 +23,7 @@ class JuegosController extends AbstractController
         ]);
     }
 
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/formulario', name: 'formuJuegos')]
     public function formulario(JuegoRepository $jr, Request $request) : Response
     {

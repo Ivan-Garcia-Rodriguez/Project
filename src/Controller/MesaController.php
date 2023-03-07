@@ -13,8 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
+#[IsGranted('ROLE_ADMIN')]
 #[route("/api/mesa")]
 class MesaController extends AbstractController
 {
@@ -62,7 +63,7 @@ class MesaController extends AbstractController
         return $this->json(['status' => 200]);
     }
 
-    #[Route('/get/{id}', name:'getMesa' ,methods:'GET')]
+    #[Route('/{id}', name:'getMesa' ,methods:'GET')]
     public function conseguir(MesaRepository $mr, $id){
         $mesa = $mr-> muestra($id);
 
